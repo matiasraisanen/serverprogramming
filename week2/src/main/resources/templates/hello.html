@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-		xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Server Programming</title>
-	</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Server Programming</title>
+</head>
 
-	<body>
-	<div th:if="${age} &gt; 17">
-		<p th:text="'Welcome ' + ${name} + '!'" />
+<body>
+	<div>
+
+		<p>Welcome to Haaga-Helia!</p>
+
+		<table>
+			<tr th:each="student : ${students}">
+				<td th:text="${student.firstName}">firstName</td>
+				<td th:text="${student.lastName}">lastName</td>
+			</tr>
+		</table>
+
 	</div>
-	
-	<div th:if="${age} &lt; 18">
-		<p>You are too young!</p>
-	</div>
-	
-	</body>
+
+</body>
 </html>
