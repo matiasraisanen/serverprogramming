@@ -5,11 +5,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.week2.domain.Friend;
 import com.example.week2.domain.Student;
 
 @Controller
 public class HelloController {
+	List<Friend> friendlist = new ArrayList<>();
+	
 	@RequestMapping("/hello")
 	public String students(Model model) {
 		Student student1 = new Student("Kate", "Cole", "kate@cole.com");
@@ -22,8 +29,17 @@ public class HelloController {
 		list.add(student3);
 
 		model.addAttribute("students", list);
-
+		
 		return "hello";
+	}
+	
+	@RequestMapping(value="/index", method=RequestMethod.GET)
+	public String friends(@RequestParam(value="name") String name, Model model) {
+		Friend friend0 = new Friend(null);
+		friendlist.add(new Friend(name));
+		model.addAttribute("friend", friend0);
+		model.addAttribute("friends", friendlist);
+		return "index";
 	}
 
 }
