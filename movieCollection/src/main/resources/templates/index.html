@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<style>
+div {
+	border: 0px;
+	background-color: #ededed;
+	border-color: black;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+	width: 70%;
+	max-width: 700px;
+	margin: auto;
+	margin-bottom: 10px;
+	overflow: auto;
+
+}
+
+h1 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+#movies {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+#movies td, #movies th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:hover {
+background-color: #ddd;
+}
+
+#movies th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#titles {
+	background-color: #91d6ff;
+	font-weight: bold;
+}
+
+
+button {
+    background-color: #91d6ff;
+    margin-top: 20px;
+    margin-left: 10%;
+    color: black;
+    padding: 10px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+</style>
+
+<title>Movie Collection</title>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8" />
+</head>
+<body>
+<div id="content">
+	<h1>MY MOVIE COLLECTION</h1>
+	
+	<table id="movies">
+		<tr id="titles">
+			<td>Title</td><td>Director</td><td>Year</td><td>IMDB</td>
+		</tr>
+		<tr th:each="movie : ${movies}">
+			<td th:text="${movie.title}">title</td>
+			<td th:text="${movie.director}">director</td>
+			<td th:text="${movie.year}">year</td>
+			<td><a th:href="${movie.imdb_rating_url}"><img src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png' alt='IMDB' /></a></td>
+		</tr>
+	</table>
+	<button type="button">Add a movie</button>
+	<button type="button">Remove a movie</button>
+</div>
+</body>
+</html>
