@@ -1,26 +1,57 @@
 package com.example.bookstore.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
-	
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String isbn;
 	private String title;
 	private String author;
 	private int year;
 	private double price;
-	
-	public Book(){}
-	public Book(String title, String author, int year, String isbn, double price) {
+
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category category;
+
+	public Book() {
+	}
+
+	public Book(Long id, String isbn, String title, String author, int year,
+			double price, Category category) {
 		super();
+		this.id = id;
+		this.isbn = isbn;
 		this.title = title;
 		this.author = author;
 		this.year = year;
-		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public String getTitle() {
@@ -47,14 +78,6 @@ public class Book {
 		this.year = year;
 	}
 
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
 	public double getPrice() {
 		return price;
 	}
@@ -62,14 +85,26 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [isbn=" + isbn + ", title=" + title + ", author=" + author
-				+ ", year=" + year + ", price=" + price + "]";
-	}	
-	
-	
+		if (this.category != null)
+			return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title
+					+ ", author=" + author + ", year=" + year + ", price="
+					+ price + ", category=" + this.getCategory() + "]";
+		else
+			return 
+					"Book [id=" + id + ", isbn=" + isbn + ", title=" + title
+					+ ", author=" + author + ", year=" + year + ", price="
+					+ price + "]";
+	}
+
 }
-
-
