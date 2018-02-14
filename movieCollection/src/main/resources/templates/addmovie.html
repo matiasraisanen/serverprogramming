@@ -1,0 +1,46 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="css/style.css"
+	th:href="@{css/style.css}"></link>
+
+<title>Movie Collection</title>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8" />
+</head>
+
+<body>
+	
+	<div>
+		<h1>Add a movie</h1>
+		<form th:object="${movie}" th:action="@{save}" action="#"
+			method="post">
+			<table id="addtable">
+				<tr>
+					<td><label for="imdb_id">IMDB ID</label></td>
+					<td><input type="text" id="imdb_id" th:field="*{imdb_id}" /><span style='font-size: 70%'>(www.imdb.com/title/</span><span style='color: red; font-weight: bold'>tt1270797</span><span style='font-size: 70%'>)</span></td>
+				</tr>
+				<tr>
+					<td><label for="title">Movie title</label></td>
+					<td><input type="text" id="title" th:field="*{title}" /></td>
+				</tr>
+				<tr>
+					<td><label for="director">Director</label></td>
+					<td><input type="text" id="director" th:field="*{director}" />
+					</td>
+				</tr>
+				<tr>
+					<td><label for="year">Year</label></td>
+					<td><input type="number" th:field="*{year}" /></td>
+				</tr>
+				<tr>
+					<td><label for="imdb_url">IMDB URL</label></td>
+					<td><input type="url" th:field="*{imdb_url}" /></td>
+				</tr>
+			</table>
+			<input id="button" type="submit" value="Add"></input>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,12 +1,13 @@
 package com.example.movieCollection.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.movieCollection.domain.Movie;
 import com.example.movieCollection.domain.MovieRepository;
@@ -16,36 +17,51 @@ public class MovieController {
 	@Autowired
 	private MovieRepository repository;
 
+	// Fetch all movies from the database and create a list
 	@RequestMapping(value = "/index")
 	public String movies(Model model) {
-
-		Movie movie1 = new Movie("tt0103064", "Terminator 2: Judgment Day", "James Cameron", 1991, "http://www.imdb.com/title/tt0103064/");
-		Movie movie2 = new Movie("tt0082694", "Mad Max 2: The Road Warrior", "George Miller", 1981, "http://www.imdb.com/title/tt0082694/");
-		Movie movie3 = new Movie("tt0100403", "Predator 2", "Stephen Hopkins", 1990, "http://www.imdb.com/title/tt0100403/");
-		Movie movie4 = new Movie("tt0090605", "Aliens", "James Cameron", 1986, "http://www.imdb.com/title/tt0090605/");
-		List<Movie> movielist = new ArrayList<>();
-		movielist.add(movie1);
-		movielist.add(movie2);
-		movielist.add(movie3);
-		movielist.add(movie4);
-		model.addAttribute("movies", movielist);
-
+		List<Movie> movies = (List<Movie>) repository.findAll();
+		model.addAttribute("movies", movies);
 		return "index";
 	}
+	
+	@RequestMapping(value = "/testpage")
+	public String testpage(Model model) {
+		return "testpage";
+	}
 
+	// Not really used, left for testing purposes. Connect to /index instead.
 	@RequestMapping(value = "/movielist")
 	public String movielist(Model model) {
-
 		List<Movie> movies = (List<Movie>) repository.findAll();
-
 		model.addAttribute("movies", movies);
-
 		return "movielist";
 	}
 
-	@RequestMapping(value = "/addmovie")
-	public String addmovie(Model model) {
+	// Create a new Movie object
+	@RequestMapping(value = "/add")
+	public String addMovie(Model model) {
+		model.addAttribute("movie", new Movie("http://www.imdb.com/title/"));
 		return "addmovie";
 	}
-
+	
+	@RequestMapping(value = "/edit/{id}")
+	public String addMovie(@PathVariable("id") Long movieId, Model model){
+		model.addAttribute("movie", repository.findOne(movieId));
+		return "editmovie";
+	}
+	
+	// Save an added or edited movie to database
+	@RequestMapping(value="/save", method = RequestMethod.POST)
+	public String save(Movie movie){
+		repository.save(movie);
+		return "redirect:index";
+	}
+	
+	// Delete a movie by its ID
+	@RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
+	public String deleteMovie(@PathVariable("id") Long movieId, Model model) {
+		repository.delete(movieId);
+		return "redirect:../index";
+	}
 }
