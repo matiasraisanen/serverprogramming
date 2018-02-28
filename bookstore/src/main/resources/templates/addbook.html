@@ -4,20 +4,51 @@
 <title>Add a book</title>
 <meta http-equiv="Content-Type" content="text/html;
 charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}"></link>
 </head>
 <body>
+<div class="container">
 	<h1>Add a new book</h1>
 
-	<form action="#" th:action="@{/addbook}" th:object="${book}" method="get">
-	<!-- 
-	<p>ISBN: <input type ="text" th:field="*{isbn}" /></p>
-	<p>Title: <input type ="text" th:field="*{title}" /></p>
-	<p>Author: <input type ="text" th:field="*{author}" /></p>
-	<p>Year: <input type ="text" th:field="*{year}" /></p>
-	<p>Price: <input type ="text" th:field="*{price}" /></p>
-	<p><input type="submit" value="Submit" /></p>
-	-->
+	<form th:object="${book}" th:action="@{save}" action="#" method="post">
+		<table style="width: 50%" class="table-striped">
+			<tr>
+				<td><label for="isbn">ISBN</label></td>
+				<td><input type="text" id="isbn" th:field="*{isbn}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label for="title">Title</label></td>
+				<td><input type="text" id="title" th:field="*{title}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label for="author">Author</label></td>
+				<td><input type="text" id="author" th:field="*{author}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label for="year">Year</label></td>
+				<td><input type="number" id="year" th:field="*{year}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><label for="price">Price</label></td>
+				<td><input type="text" id="price" th:field="*{price}" /></td>
+				<td></td>
+			</tr>
+			<tr>
+			<td><label for="catlist">Category</label></td>
+			 <td>
+			 <select id="catlist" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+    		</select>
+    		</td>
+    		</tr>
+		</table>
+		<input class="btn btn-success" type="submit" value="Add" />
 	</form>
-	
+</div>
 </body>
 </html>
