@@ -18,6 +18,7 @@ charset=UTF-8" />
 			<img src="http://renki.dy.fi/varasto/Edit.png"
 				alt="MY MOVIE COLLECTION" />
 		</h1>
+		<div id="table">
 		<form th:object="${movie}" th:action="@{../save}" action="#"
 			method="post">
 			<table id="addtable">
@@ -45,9 +46,11 @@ charset=UTF-8" />
 			<p><img src="http://renki.dy.fi/varasto/Bar.png" alt="BAR" /></p>
 			<input type="hidden" th:field="*{id}" class="form-control" /> <input
 				id="button" class="btn btn-success" type="submit" value="Save"></input>
-		</form>
-			<a th:href="@{/index}"><input id="button" type="submit"
+				<a th:href="@{/index}"><input id="buttonright" type="button"
 				value="Cancel" /></a>
+		</form>
+			
+				</div>
 
 
 

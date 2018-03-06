@@ -33,7 +33,7 @@ charset=UTF-8" />
 	<p>
 	<img src="http://renki.dy.fi/varasto/Bar.png" alt="BAR"/>
 	</p>
-	<input sec:authorize="hasAuthority('ADMIN')" style="float: right;" id="button" type="submit" value="Add a movie" onclick="window.location='/add';" />
+	<input sec:authorize="hasAuthority('ADMIN')" id="buttonright" type="submit" value="Add a movie" onclick="window.location='/add';" />
 	
 	<form th:action="@{/logout}" method="post">
 		<input id="button" type="submit" value="Sign Out" class="btn btn-danger" />

@@ -18,9 +18,10 @@ charset=UTF-8" />
 			<img src="http://renki.dy.fi/varasto/Add.png"
 				alt="MY MOVIE COLLECTION" />
 		</h1>
+		<div id="table">
 		<form th:object="${movie}" th:action="@{save}" action="#"
 			method="post">
-			<table id="addtable">
+			<table>
 				<tr>
 					<td><label for="imdb_id">IMDB ID</label></td>
 					<td><input type="text" id="imdb_id" th:field="*{imdb_id}" /><span
@@ -46,10 +47,12 @@ charset=UTF-8" />
 			<p>
 				<img src="http://renki.dy.fi/varasto/Bar.png" alt="BAR" />
 			</p>
-			<input id="button" type="submit" value="Add"></input><br />
-		</form>
-		<a th:href="@{/index}"><input id="button" type="submit"
+			<input id="button" type="submit" value="Add"></input>
+			<a th:href="@{/index}"><input id="buttonright" type="button"
 			value="Cancel" /></a>
+		</form>
+		
+			</div>
 
 
 

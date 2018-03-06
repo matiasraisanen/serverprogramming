@@ -27,7 +27,7 @@ public class Movie {
 		this.title = title;
 		this.director = director;
 		this.year = year;
-		this.imdb_url = imdb_url;
+		this.imdb_url = "http://www.imdb.com/title/" + imdb_id; //This will construct the IMDB-url to be saved into the database.
 	}
 	
 	public Movie(String imdb_url) {
@@ -81,8 +81,6 @@ public class Movie {
 	}
 
 	public void setImdb_url(String imdb_url) {
-		//This will construct the IMDB-url to be saved into the database.
-		imdb_url = "http://www.imdb.com/title/" + this.imdb_id;
 		this.imdb_url = imdb_url;
 	}
 

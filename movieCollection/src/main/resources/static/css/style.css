@@ -1,6 +1,6 @@
 div {
 	border: 0px;
-	background-color: #ededed;
+	background-color: #d2e5ef;
 	border-color: black;
 	border-style: solid;
 	border-radius: 5px;
@@ -21,7 +21,6 @@ table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     margin: auto;
     border-collapse: collapse;
-    width: 80%;
 }
 
 th {
@@ -32,7 +31,7 @@ th {
 }
 
 td {
-    border: 1px solid #ddd;
+    border: 1px solid #afafaf;
     padding: 8px;
 }
 
@@ -62,8 +61,24 @@ button {
     font-size: 12px;
 }
 
+#buttonright {
+    background-color: #91d6ff;
+    border-radius: 8px;
+    margin-top: 0px;
+    margin-right: 10%;
+    float: right;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold
+}
+
 #button {
     background-color: #91d6ff;
+    border-radius: 8px;
     margin-top: 0px;
     margin-left: 10%;
     color: black;
@@ -76,6 +91,7 @@ button {
 }
 
 #redbutton {
+	border-radius: 8px;
     background-color: #fc8080;
     color: black;
     text-align: center;
