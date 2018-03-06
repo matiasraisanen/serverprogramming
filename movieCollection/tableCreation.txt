@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS user (
+    id int(5) NOT NULL AUTO_INCREMENT,
+    username varchar(50) DEFAULT NULL,
+    password varchar(500) DEFAULT NULL,
+    role varchar(50),
+    PRIMARY KEY(id)
+    );
+
+CREATE TABLE IF NOT EXISTS movie (
+    id int(5) NOT NULL AUTO_INCREMENT,
+    imdb_id varchar(100) DEFAULT NULL,
+    title varchar(100) DEFAULT NULL,
+    director varchar(100) DEFAULT NULL,
+    year varchar(50) DEFAULT NULL,
+    imdb_url varchar(700) DEFAULT NULL,
+    PRIMARY KEY(id)
+    );

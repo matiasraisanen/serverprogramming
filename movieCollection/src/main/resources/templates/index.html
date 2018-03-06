@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <link type="text/css" rel="stylesheet" href="css/style.css"
 	th:href="@{css/style.css}"></link>
+<link REL="SHORTCUT ICON" HREF="http://renki.dy.fi/varasto/mymovies.ico"></link>
 
 <title>Movie Collection</title>
 <meta http-equiv="Content-Type" content="text/html;
@@ -14,20 +15,29 @@ charset=UTF-8" />
 	
 	<table id="movies">
 		<tr id="titles">
-			<th>Title</th><th>Director</th><th>Year</th><th>IMDB</th><th>Edit</th><th>Delete</th>
+			<th>Title</th><th>Director</th>
+			<th>Year</th>
+			<th>IMDB</th>
+			<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
 		</tr>
 		<tr th:each="movie : ${movies}">
 			<td th:text="${movie.title}">title</td>
 			<td th:text="${movie.director}">director</td>
 			<td th:text="${movie.year}">year</td>
-			<td><a th:href="${movie.imdb_url}"><img src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png' alt='IMDB' /></a></td>
-			<td><a th:href="@{/edit/{id}(id=${movie.id})}"><input id="redbutton" style="background-color: #9bff9d" type="submit" value="Edit"/></a></td>
-			<td><a th:href="@{/delete/{id}(id=${movie.id})}"><input id="redbutton" type="submit" value="Delete"/></a></td>
-			
-			
+			<td><a th:href="${movie.imdb_url}"><img src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png' alt='IMDd link' /></a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${movie.id})}"><input id="redbutton" style="background-color: #9bff9d" type="submit" value="Edit"/></a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}"><input id="redbutton" type="submit" value="Delete"/></a></td>
 		</tr>
 	</table>
-	<input id="button" type="submit" value="Add a movie" onclick="window.location='/add';" />
+	<p>
+	<img src="http://renki.dy.fi/varasto/Bar.png" alt="BAR"/>
+	</p>
+	<input sec:authorize="hasAuthority('ADMIN')" style="float: right;" id="button" type="submit" value="Add a movie" onclick="window.location='/add';" />
+	
+	<form th:action="@{/logout}" method="post">
+		<input id="button" type="submit" value="Sign Out" class="btn btn-danger" />
+	</form>
 </div>
 </body>
 </html>
