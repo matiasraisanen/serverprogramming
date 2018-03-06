@@ -25,7 +25,7 @@ charset=UTF-8" />
 			<td th:text="${movie.title}">title</td>
 			<td th:text="${movie.director}">director</td>
 			<td th:text="${movie.year}">year</td>
-			<td><a th:href="${movie.imdb_url}"><img src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png' alt='IMDd link' /></a></td>
+			<td th:utext="${movie.imdb_url}">url</td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${movie.id})}"><input id="redbutton" style="background-color: #9bff9d" type="submit" value="Edit"/></a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}"><input id="redbutton" type="submit" value="Delete"/></a></td>
 		</tr>

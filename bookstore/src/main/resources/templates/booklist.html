@@ -40,7 +40,7 @@
 					th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
 			</tr>
 		</table>
-		<input class="btn btn-success" id="button" type="submit"
+		<input style="float: right" class="btn btn-success" id="button" type="submit"
 			value="Add a book" onclick="window.location='/addbook';" />
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-danger" />

@@ -75,10 +75,14 @@ public class Movie {
 	}
 
 	public String getImdb_url() {
+		//This will construct the IMDB rating plugin script, using the IMDB-ID provided by the user.
+		imdb_url = "<span class='imdbRatingPlugin' data-user='ur85273547' data-title='" +this.imdb_id + "' data-style='p2'><a href='https://www.imdb.com/title/"+this.imdb_id+"/?ref_=plg_rt_1'><img src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_38x18.png' alt='Movie on IMDb' /></a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src='https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js';stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>"; 
 		return imdb_url;
 	}
 
 	public void setImdb_url(String imdb_url) {
+		//This will construct the IMDB-url to be saved into the database.
+		imdb_url = "http://www.imdb.com/title/" + this.imdb_id;
 		this.imdb_url = imdb_url;
 	}
 
