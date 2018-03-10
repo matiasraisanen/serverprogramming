@@ -4,7 +4,7 @@
 <head>
 <link type="text/css" rel="stylesheet" href="css/style.css"
 	th:href="@{../css/style.css}"></link>
-<link REL="SHORTCUT ICON" HREF="http://renki.dy.fi/varasto/mymovies.ico"></link>
+<link REL="SHORTCUT ICON" HREF="img/mymovies.ico"></link>
 
 <title>Movie Collection</title>
 <meta http-equiv="Content-Type" content="text/html;
@@ -15,7 +15,7 @@ charset=UTF-8" />
 
 	<div>
 		<h1>
-			<img src="http://renki.dy.fi/varasto/Edit.png"
+			<img src="img/Edit.png"
 				alt="MY MOVIE COLLECTION" />
 		</h1>
 		<div id="table">
@@ -43,7 +43,7 @@ charset=UTF-8" />
 					<td><input type="number" th:field="*{year}" /></td>
 				</tr>
 			</table>
-			<p><img src="http://renki.dy.fi/varasto/Bar.png" alt="BAR" /></p>
+			<p><img src="img/Bar.png" alt="BAR" /></p>
 			<input type="hidden" th:field="*{id}" class="form-control" /> <input
 				id="button" class="btn btn-success" type="submit" value="Save"></input>
 				<a th:href="@{/index}"><input id="buttonright" type="button"

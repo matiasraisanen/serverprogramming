@@ -1,43 +1,59 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <link type="text/css" rel="stylesheet" href="css/style.css"
 	th:href="@{css/style.css}"></link>
-<link REL="SHORTCUT ICON" HREF="http://renki.dy.fi/varasto/mymovies.ico"></link>
+<link REL="SHORTCUT ICON" HREF="img/mymovies.ico"></link>
 
 <title>Movie Collection</title>
 <meta http-equiv="Content-Type" content="text/html;
 charset=UTF-8" />
 </head>
 <body>
-<div id="content">
-	<h1><img src="http://renki.dy.fi/varasto/MyMovies.png" alt="MY MOVIE COLLECTION"/></h1>
-	
-	<table id="movies">
-		<tr id="titles">
-			<th>Title</th><th>Director</th>
-			<th>Year</th>
-			<th>IMDB</th>
-			<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
-			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
-		</tr>
-		<tr th:each="movie : ${movies}">
-			<td th:text="${movie.title}">title</td>
-			<td th:text="${movie.director}">director</td>
-			<td th:text="${movie.year}">year</td>
-			<td th:utext="${movie.imdb_url}">url</td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${movie.id})}"><input id="redbutton" style="background-color: #9bff9d" type="submit" value="Edit"/></a></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}"><input id="redbutton" type="submit" value="Delete"/></a></td>
-		</tr>
-	</table>
-	<p>
-	<img src="http://renki.dy.fi/varasto/Bar.png" alt="BAR"/>
-	</p>
-	<input sec:authorize="hasAuthority('ADMIN')" id="buttonright" type="submit" value="Add a movie" onclick="window.location='/add';" />
-	
-	<form th:action="@{/logout}" method="post">
-		<input id="button" type="submit" value="Sign Out" class="btn btn-danger" />
-	</form>
-</div>
+	<div id="content">
+		<h1>
+			<img src="img/MyMovies.png" alt="MY MOVIE COLLECTION" />
+		</h1>
+
+		<table id="movies">
+			<tr id="titles">
+				<th>Title</th>
+				<th>Director</th>
+				<th>Year</th>
+				<th>IMDB</th>
+				<th>JSON</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+			</tr>
+			<tr th:each="movie : ${movies}">
+				<td th:text="${movie.title}">title</td>
+				<td th:text="${movie.director}">director</td>
+				<td th:text="${movie.year}">year</td>
+				<td th:utext="${movie.imdb_url}">url</td>
+				<td><a th:href="@{/movie/{id}(id=${movie.id})}">JSON</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/edit/{id}(id=${movie.id})}"><input id="redbutton"
+						style="background-color: #9bff9d" type="submit" value="Edit" /></a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/delete/{id}(id=${movie.id})}"><input id="redbutton"
+						type="submit" value="Delete" /></a></td>
+			</tr>
+		</table>
+
+		<a style="margin-left: 10%" th:href="@{/movielist}">All movies as
+			JSON</a>
+		<p>
+			<img src="img/Bar.png" alt="BAR" />
+		</p>
+		<input sec:authorize="hasAuthority('ADMIN')" id="buttonright"
+			type="submit" value="Add a movie"
+			onclick="window.location='/movieCollection/add';" />
+
+		<form th:action="@{/logout}" method="post">
+			<input id="button" type="submit" value="Sign Out"
+				class="btn btn-danger" />
+		</form>
+	</div>
 </body>
 </html>

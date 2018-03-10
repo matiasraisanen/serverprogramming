@@ -18,6 +18,7 @@ public class MovieController {
 	@Autowired
 	private MovieRepository repository;
 	
+	// Login page
     @RequestMapping(value="/login")
     public String login() {	
         return "login";
@@ -65,7 +66,7 @@ public class MovieController {
 	// Save an added or edited movie to database
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String save(Movie movie){
-		movie.setImdb_url("http://www.imdb.com/title/" + movie.getImdb_id());	//Constructs the IMDb-link using the IMDb ID.
+		movie.setImdb_url("http://www.imdb.com/title/" + movie.getImdb_id());	//Constructs the IMDb-url using the IMDb ID.
 		repository.save(movie);
 		return "redirect:index";
 	}

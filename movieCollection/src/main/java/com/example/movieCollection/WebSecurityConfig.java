@@ -23,8 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .authorizeRequests()
         .antMatchers("/css/**").permitAll() // Enable css when logged out
-        .antMatchers("/index", "/movielist", "/movie/{id}").hasAnyAuthority("USER","ADMIN")
-        .antMatchers("/add", "/save", "/delete/{id]}", "/edit/{id}").hasAuthority("ADMIN")
+        .antMatchers("/index", "/movielist", "/movie/{id}").hasAnyAuthority("USER","ADMIN") //All users can access these endpoints
+        .antMatchers("/add", "/save", "/delete/{id]}", "/edit/{id}").hasAuthority("ADMIN")	//Only admin can access these endpoints
         .anyRequest().authenticated()
         .and()
         .formLogin()
@@ -38,7 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    	//Use BCrypt password encoder
     	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    	
     }
 
 }

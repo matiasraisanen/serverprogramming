@@ -1,3 +1,5 @@
+SQL statements for table creation:
+
 CREATE TABLE IF NOT EXISTS user (
     id int(5) NOT NULL AUTO_INCREMENT,
     username varchar(50) DEFAULT NULL,
