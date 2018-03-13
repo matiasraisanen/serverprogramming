@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
-import com.example.movieCollection.domain.User;
+//import com.example.movieCollection.domain.User;
 import com.example.movieCollection.domain.UserRepository;
 import com.example.movieCollection.domain.Movie;
 import com.example.movieCollection.domain.MovieRepository;

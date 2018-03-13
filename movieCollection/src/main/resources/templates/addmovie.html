@@ -28,20 +28,22 @@ charset=UTF-8" />
 						style='font-size: 70%'>(www.imdb.com/title/</span><span
 						style='color: red; font-weight: bold'>tt1270797</span><span
 						style='font-size: 70%'>)</span></td>
+						<td style="border: 0px"> <p style="color: red" th:if="${#fields.hasErrors('imdb_id')}">Cannot be empty</p></td>
 				</tr>
 				<tr>
 					<td><label for="title">Movie title</label></td>
 					<td><input type="text" id="title" th:field="*{title}" /></td>
-					<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
+					<td style="border: 0px"> <p style="color: red" th:if="${#fields.hasErrors('title')}">Cannot be empty</p></td>
 				</tr>
 				<tr>
 					<td><label for="director">Director</label></td>
-					<td><input type="text" id="director" th:field="*{director}" />
-					</td>
+					<td><input type="text" id="director" th:field="*{director}" /></td>
+					<td style="border: 0px"><p style="color: red" th:if="${#fields.hasErrors('director')}">Cannot be empty</p></td>
 				</tr>
 				<tr>
 					<td><label for="year">Year</label></td>
 					<td><input type="number" th:field="*{year}" /></td>
+					<td style="border: 0px"> <p style="color: red" th:if="${#fields.hasErrors('year')}">Not a valid year</p></td>
 				</tr>
 
 			</table>
@@ -49,6 +51,7 @@ charset=UTF-8" />
 				<img src="img/Bar.png" alt="BAR" />
 			</p>
 			<input id="button" type="submit" value="Add"></input>
+			
 			<a th:href="@{/index}"><input id="buttonright" type="button"
 			value="Cancel" /></a>
 		</form>

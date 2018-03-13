@@ -2,8 +2,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<link type="text/css" rel="stylesheet" href="css/style.css"
-	th:href="@{../css/style.css}"></link>
+<link type="text/css" rel="stylesheet" href="../css/style.css"
+	th:href="@{/css/style.css}"></link>
 <link REL="SHORTCUT ICON" HREF="img/mymovies.ico"></link>
 
 <title>Movie Collection</title>
@@ -15,11 +15,11 @@ charset=UTF-8" />
 
 	<div>
 		<h1>
-			<img src="img/Edit.png"
+			<img th:src="@{/img/Edit.png}"
 				alt="MY MOVIE COLLECTION" />
 		</h1>
 		<div id="table">
-		<form th:object="${movie}" th:action="@{../save}" action="#"
+		<form th:object="${movie}" th:action="@{/saveEdit}" action="#"
 			method="post">
 			<table id="addtable">
 				<tr>
@@ -28,22 +28,25 @@ charset=UTF-8" />
 						style='font-size: 70%'>(www.imdb.com/title/</span><span
 						style='color: red; font-weight: bold'>tt1270797</span><span
 						style='font-size: 70%'>)</span></td>
+						<td style="border: 0px"> <p style="color: red" th:if="${#fields.hasErrors('imdb_id')}">Cannot be empty</p></td>
 				</tr>
 				<tr>
 					<td><label for="title">Movie title</label></td>
 					<td><input type="text" id="title" th:field="*{title}" /></td>
+					<td style="border: 0px"> <p style="color: red" th:if="${#fields.hasErrors('title')}">Cannot be empty</p></td>
 				</tr>
 				<tr>
 					<td><label for="director">Director</label></td>
-					<td><input type="text" id="director" th:field="*{director}" />
-					</td>
+					<td><input type="text" id="director" th:field="*{director}" /></td>
+					<td style="border: 0px"><p style="color: red" th:if="${#fields.hasErrors('director')}">Cannot be empty</p></td>
 				</tr>
 				<tr>
 					<td><label for="year">Year</label></td>
 					<td><input type="number" th:field="*{year}" /></td>
+					<td style="border: 0px"> <p style="color: red" th:if="${#fields.hasErrors('year')}">Not a valid year</p></td>
 				</tr>
 			</table>
-			<p><img src="img/Bar.png" alt="BAR" /></p>
+			<p><img th:src="@{/img/Bar.png}" alt="BAR" /></p>
 			<input type="hidden" th:field="*{id}" class="form-control" /> <input
 				id="button" class="btn btn-success" type="submit" value="Save"></input>
 				<a th:href="@{/index}"><input id="buttonright" type="button"

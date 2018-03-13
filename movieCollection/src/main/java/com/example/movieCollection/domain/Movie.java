@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Movie {
@@ -11,9 +13,14 @@ public class Movie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;	//Database ID. Primary key and autonumber
+	@NotNull
 	private String imdb_id;	//Identifier in IMDB.com
+	@NotNull
 	private String title;	// Movie title
+	@NotNull
 	private String director;	// Movie director
+	@NotNull
+	@Min(1)
 	private int year;	//Year of release
 	private String imdb_url;	//URL to movie's IMDB page
 	

@@ -33,7 +33,7 @@ charset=UTF-8" />
 				<td th:utext="${movie.imdb_url}">url</td>
 				<td><a th:href="@{/movie/{id}(id=${movie.id})}">JSON</a></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
-					th:href="@{/edit/{id}(id=${movie.id})}"><input id="redbutton"
+					th:href="@{/edit_{id}(id=${movie.id})}"><input id="redbutton"
 						style="background-color: #9bff9d" type="submit" value="Edit" /></a></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
 					th:href="@{/delete/{id}(id=${movie.id})}"><input id="redbutton"
@@ -46,9 +46,8 @@ charset=UTF-8" />
 		<p>
 			<img src="img/Bar.png" alt="BAR" />
 		</p>
-		<input sec:authorize="hasAuthority('ADMIN')" id="buttonright"
-			type="submit" value="Add a movie"
-			onclick="window.location='/movieCollection/add';" />
+		<a sec:authorize="hasAuthority('ADMIN')"  th:href="@{/add}"><input id="buttonright"
+			type="submit" value="Add a movie" /></a>
 
 		<form th:action="@{/logout}" method="post">
 			<input id="button" type="submit" value="Sign Out"
